@@ -20,9 +20,10 @@ features = [
     # (re-enable whichever you like)
 
     # Parts of Bevy:
-    "animation",      # Enable animation for everything that supports it
+    "animation",                   # Enable animation for everything that supports it
     "bevy_animation",
-    #"bevy_anti_alias",
+    "bevy_post_process",
+    "bevy_anti_alias",
     "bevy_asset",                  # Asset management
     "bevy_audio",                  # Audio support
     "bevy_camera",
