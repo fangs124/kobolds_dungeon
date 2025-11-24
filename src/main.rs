@@ -77,9 +77,25 @@ fn setup(mut commands: Commands, terrain_sprite: Res<TerrainSprite>, mut image: 
     //let tile_data: Vec<Option<TileData>> = vec![None; chunk_size.element_product() as usize];
 
     let tilemap_chunk = TilemapChunk { chunk_size, tile_display_size, tileset: terrain_sprite.0.clone(), alpha_mode: Default::default() };
-    commands.spawn((tilemap_chunk, TilemapChunkTileData(tile_data)));
+
     //commands.spawn(Sprite::from_image(terrain_sprite.0.clone()));
-    commands.spawn(Camera2d);
+    //commands.spawn((
+    //    Camera3d::default(),
+    //    Projection::from(OrthographicProjection {
+    //        scaling_mode: bevy::camera::ScalingMode::FixedVertical { viewport_height: 6.0 },
+    //        ..OrthographicProjection::default_3d()
+    //    }),
+    //    Transform::from_xyz(5.0, 5.0, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
+    //));
+    commands.spawn((
+        Camera2d::default(),
+        Projection::from(OrthographicProjection {
+            scaling_mode: bevy::camera::ScalingMode::FixedVertical { viewport_height: 1200.0 },
+            ..OrthographicProjection::default_2d()
+        }),
+        Transform::from_xyz(5.0, 5.0, -5.0).looking_at(Vec3::ZERO, Vec3::Z),
+    ));
+    commands.spawn((tilemap_chunk, TilemapChunkTileData(tile_data)));
 }
 
 fn apply_transformation(image: &mut Image, tile_width: u32, tile_height: u32) {
